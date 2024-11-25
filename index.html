@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem 0;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .container {
+            padding: 2rem;
+            margin: 2rem auto;
+            width: 90%;
+            max-width: 600px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            background: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #555;
+        }
+
+        .result {
+            margin-top: 2rem;
+            padding: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #f1f1f1;
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>CodSoft Certificate Verification</h1>
+</header>
+
+<div class="container">
+    <h2>Certificate Verification System</h2>
+    <input type="text" id="certificateCode" placeholder="Enter Certificate Code">
+    <button onclick="verifyCertificate()">Search</button>
+
+    <div id="result" class="result" style="display: none;"></div>
+</div>
+
+<footer>
+    <p>© 2024 • Built with CodSoft</p>
+</footer>
+
+<script>
+    // Mock database of certificates
+    const certificates = {
+        "609c4be": {
+            name: "Rishu Gupta",
+            domain: "Python Programming Internship",
+            duration: "4 weeks",
+            startDate: "20/Jul/2024",
+            awardDate: "20/Aug/2024"
+        }
+    };
+
+    function verifyCertificate() {
+        const code = document.getElementById("certificateCode").value;
+        const resultDiv = document.getElementById("result");
+
+        if (certificates[code]) {
+            const cert = certificates[code];
+            resultDiv.innerHTML = `
+                <h3>Certificate Result</h3>
+                <p><strong>Student Name:</strong> ${cert.name}</p>
+                <p><strong>Domain:</strong> ${cert.domain}</p>
+                <p><strong>Duration:</strong> ${cert.duration}</p>
+                <p><strong>Certification No:</strong> ${code}</p>
+                <p><strong>Starting Date:</strong> ${cert.startDate}</p>
+                <p><strong>Award Date:</strong> ${cert.awardDate}</p>
+            `;
+        } else {
+            resultDiv.innerHTML = "<p>Invalid certificate code. Please try again.</p>";
+        }
+
+        resultDiv.style.display = "block";
+    }
+</script>
+
+</body>
+</html>
